@@ -1,13 +1,21 @@
+require("dotenv").config();
 const express = require("express");
+const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
 const logger = require("./middleware/logger");
 
 const app = express();
 
+app.use(express.json());
 // Use the logger middleware for all routes
 app.use(logger);
-// Use the user routes
 
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => console.log("Connected to MongoDB"))
+  .catch((err) => console.error("Failed to connect to MongoDB", err));
+
+// Use the user routes
 app.use("/api", userRoutes);
 
 // Define a port
