@@ -1,12 +1,14 @@
 
 
-const Truck = require('../models/Truck');
+const Truck = require('../models/truckModel');
 
 
-const getAllTrucks = async (req, res) => {
+const getAllTrucks = async (req, res) => {  
     try {
+        console.log('get all trucks');
         const trucks = await Truck.find();
         res.json(trucks);
+        
     } catch (error) {
         res.status(500).json({ message: error.message });
     }

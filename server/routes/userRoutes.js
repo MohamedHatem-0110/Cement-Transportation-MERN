@@ -4,7 +4,7 @@ const { getAllTrucks, createTruck } = require("../controller/TruckController");
 const router = express.Router();
 
 // Define routes
-router.get("/users", getAllUsers);
+
 router.get("/getalltrucks",getAllTrucks);
 router.post("/createtrucks",createTruck);
 
