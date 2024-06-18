@@ -18,7 +18,7 @@ const getAllTrucks = async (req, res) => {
 
 const createTruck = async (req, res) => {
     const truck = new Truck({
-        Name: req.body.Name
+        name: req.body.name
     });
     try {
         const newTruck = await truck.save();
