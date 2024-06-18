@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const Transaction = require('./transcationModel');
 
 const TripSchema = new mongoose.Schema({
     

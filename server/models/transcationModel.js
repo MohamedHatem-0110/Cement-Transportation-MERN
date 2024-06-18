@@ -6,6 +6,11 @@ const transactionSchema = new mongoose.Schema({
         ref: 'Client',
         required: true
     },
+    idTrip: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Trip',
+        required: true
+    },
     paid: {
         type: Number,
         required: true
