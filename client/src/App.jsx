@@ -13,6 +13,7 @@ import TruckLayout from './layouts/TruckLayout.jsx';
 import RootLayout from './layouts/RootLayout'
 import NotFound from './pages/Notfound.jsx';
 import Truck,{ trucksloader } from './pages/Trucks/Truck.jsx';
+import TruckDetails, { truckDetailloader } from './pages/Trucks/TruckDetails.jsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -25,6 +26,12 @@ const router = createBrowserRouter(
          element={<Truck />} 
          loader={trucksloader}
          />
+         <Route
+          path=":truckId"
+          element={<TruckDetails />}
+          loader={truckDetailloader}
+
+          />
       </Route>
 
 
