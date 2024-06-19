@@ -3,7 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const userRoutes = require("./routes/userRoutes");
 const logger = require("./middleware/logger");
-
+const cors = require("cors");
 const app = express();
 
 app.use(express.json());
@@ -16,7 +16,7 @@ mongoose
   .catch((err) => console.error("Failed to connect to MongoDB", err));
 
 // Use the user routes
-app.use("/api", userRoutes);
+app.use(cors("/api", userRoutes));
 
 // Define a port
 const port = 3000;

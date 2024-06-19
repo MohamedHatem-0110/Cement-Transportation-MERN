@@ -15,7 +15,7 @@ export default function Truck() {
                 {trucks.map((truck) => (
                     <Link to="/" key={truck.id}>
                         <p>{truck.name}</p>
-                        
+
                     </Link>
                 ))}
             </ul> 
@@ -25,7 +25,7 @@ export default function Truck() {
     }
 //loader function 
 export const trucksloader = async () => {
-    const res = await fetch("http://localhost:3000/trucks");
+    const res = await fetch("http://localhost:3000/api/trucks");
 
     return res.json();
 
