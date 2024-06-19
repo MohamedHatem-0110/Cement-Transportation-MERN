@@ -13,6 +13,7 @@ const {
   createTrip,
   getAllTrips,
   createTransaction,
+  gettripsbytruckid,
 } = require("../controller/tripsController");
 const router = express.Router();
 
@@ -29,6 +30,7 @@ router.post("/createtruck", createTruck);
 
 router.post("/trip", createTrip);
 router.get("/trip", getAllTrips);
+router.get("/trips/:truckId", gettripsbytruckid);
 
 router.post("/transaction", createTransaction);
 

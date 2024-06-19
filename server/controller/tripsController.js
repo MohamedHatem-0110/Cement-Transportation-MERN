@@ -59,6 +59,17 @@ const createTransaction = async (req, res) => {
 //         res.status(500).json({ message: error.message });
 //     }
 // }
+const gettripsbytruckid =
+  async (req, res) => {
+    try {
+      const trips = await Trip.find({ truck: req.params.truckId });
+      res.json(trips);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  };
 
-module.exports = { getAllTrips, createTrip, createTransaction };
+  
+
+module.exports = { getAllTrips, createTrip, createTransaction ,gettripsbytruckid};
 //remove transcation from trip

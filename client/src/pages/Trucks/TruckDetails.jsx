@@ -2,7 +2,7 @@ import { useLoaderData, useParams, Form, redirect } from "react-router-dom";
 
 
 export default function TruckDetails() {
-  const { truck, clients } = useLoaderData();
+  const { truck, clients ,trips} = useLoaderData();
 
   return (
     <div className="truck-details">
@@ -10,11 +10,11 @@ export default function TruckDetails() {
       <p>{truck.name}</p>
 
       <h3>Trips</h3>
-      {truck.trips.length > 0 ? (
+      {trips.length > 0 ? (
         <ul>
-          {truck.trips.map((trip) => (
+          {trips.map((trip) => (
             <li key={trip._id}>
-              <p>{trip.name}</p>
+              <p>{trip.driver}</p>
             </li>
           ))}
         </ul>
@@ -60,8 +60,13 @@ export const truckDetailloader = async ({ params }) => {
       throw new Error('Failed to fetch clients');
     }
     const clients = await clientsRes.json();
+    const trucktrips = await fetch(`http://localhost:3000/api/trips/${truckId}`);
+    if (!trucktrips.ok) {
+      throw new Error('Failed to fetch trips');
+    }
+    const trips = await trucktrips.json();
   
-    return { truck, clients };
+    return { truck, clients ,trips};
   };
 
 export const addTripAction = async ({ request }) => {
