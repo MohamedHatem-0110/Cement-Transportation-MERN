@@ -45,6 +45,8 @@ header nav a{
 }
 header nav a.active {
   background: var(--primary);
+  /* hover */
+    
 }
 
 /* page content */
@@ -53,16 +55,19 @@ main {
   margin: 40px auto;
 }
 
-/* help layout */
-
-
 /* faq */
+.faq .question {
+  background: rgba(0,0,0,0.2);
+  padding: 5px 20px;
+  border-radius: 4px;
+  margin: 20px 0;
+}
 
 
-/* trucks list */
+/* careers list */
 
 
-/* trucks details */
+/* careers details */
 
 
 /* breadcrumbs */

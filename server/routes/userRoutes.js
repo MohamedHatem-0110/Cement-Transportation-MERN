@@ -5,6 +5,7 @@ const router = express.Router();
 
 // Define routes
 
+
 router.get("/getalltrucks",getAllTrucks);
 router.post("/createtruck",createTruck);
 
