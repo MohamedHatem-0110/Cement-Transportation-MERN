@@ -63,6 +63,32 @@ main {
   margin: 20px 0;
 }
 
+.clients{
+  display: grid;
+  gap: 15px;
+  align-self: center;
+  grid-template-columns: repeat(4,1fr);
+
+
+}
+.client-layout{
+  display: flex;
+  flex-direction: column;
+
+}
+
+@media (max-width: 1200px) {
+  .clients {
+    grid-template-columns: repeat(3,1fr); /* Two columns for medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .clients {
+    grid-template-columns: repeat(2,1fr); /* One column for small screens */
+  }
+}
+
 
 /* careers list */
 

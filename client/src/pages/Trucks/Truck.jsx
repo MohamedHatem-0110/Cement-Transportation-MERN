@@ -1,27 +1,21 @@
 import { Link, useLoaderData } from "react-router-dom";
 
-
-
-
-
-
 export default function Truck() {
-    const trucks = useLoaderData();
+  const trucks = useLoaderData();
 
-    return (
-        <div className="trucks">
-            {trucks.map((truck) => (
-                <Link to="/" key={truck.id}>
-                    <p>{truck.name}</p>
-                </Link>
-            ))}
-        </div>
-    )
+  return (
+    <div className="trucks">
+      {trucks.map((truck) => (
+        <Link to="/" key={truck._id}>
+          <p>{truck.name}</p>
+        </Link>
+      ))}
+    </div>
+  );
 }
-//loader function 
+//loader function
 export const trucksloader = async () => {
-    const res = await fetch("http://localhost:3000/api/trucks");
+  const res = await fetch("http://localhost:3000/api/trucks");
 
-    return res.json();
-
-}
+  return res.json();
+};

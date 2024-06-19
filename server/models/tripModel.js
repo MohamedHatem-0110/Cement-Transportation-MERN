@@ -1,34 +1,34 @@
-const mongoose = require('mongoose');
-const Transaction = require('./transcationModel');
+const mongoose = require("mongoose");
+const Transaction = require("./transactionModel");
 
 const TripSchema = new mongoose.Schema({
-    
-    truck: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Truck',
-        required: true
+  truck: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Truck",
+    required: true,
+  },
+  driver: {
+    type: String,
+    required: true,
+  },
+  capital: {
+    type: Number,
+    default: 0,
+  },
+  Transactions: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Transaction",
     },
-    
-    
-    driver: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Driver',
-        required: true
+  ],
+  clients: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Client",
     },
-    capital: {
-        type: Number,
-        default: 0
-    },
-    Transactions: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Transaction'
-    }],
-    clients: [{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Client'
-    }]
+  ],
 });
 
-const Trip = mongoose.model('Trip', TripSchema);
+const Trip = mongoose.model("Trip", TripSchema);
 
-module.exports = Truck;
+module.exports = Trip;
