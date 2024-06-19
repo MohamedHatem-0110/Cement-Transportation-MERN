@@ -6,6 +6,9 @@ const logger = require("./middleware/logger");
 const cors = require("cors");
 const app = express();
 
+// Use CORS middleware
+app.use(cors());
+
 app.use(express.json());
 // Use the logger middleware for all routes
 app.use(logger);
@@ -16,7 +19,7 @@ mongoose
   .catch((err) => console.error("Failed to connect to MongoDB", err));
 
 // Use the user routes
-app.use(cors("/api", userRoutes));
+app.use("/api", userRoutes);
 
 // Define a port
 const port = 3000;
