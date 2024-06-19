@@ -17,6 +17,7 @@ const getAllTrucks = async (req, res) => {
 
 
 const createTruck = async (req, res) => {
+    console.log(req.body);
     const truck = new Truck({
         name: req.body.name
     });

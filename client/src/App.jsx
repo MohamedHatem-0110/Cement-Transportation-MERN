@@ -12,7 +12,7 @@ import TruckLayout from './layouts/TruckLayout.jsx';
 // layouts
 import RootLayout from './layouts/RootLayout'
 import NotFound from './pages/Notfound.jsx';
-import Truck,{ trucksloader } from './pages/Trucks/Truck.jsx';
+import Truck,{ addtruckAction, trucksloader } from './pages/Trucks/Truck.jsx';
 import TruckDetails, { truckDetailloader } from './pages/Trucks/TruckDetails.jsx';
 
 const router = createBrowserRouter(
@@ -20,11 +20,13 @@ const router = createBrowserRouter(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
 
-      <Route path="trucks" element={<TruckLayout />} >
+      <Route path="trucks" element={<TruckLayout />} action={addtruckAction} >
         <Route 
          index
          element={<Truck />} 
          loader={trucksloader}
+        
+         
          />
          <Route
           path=":truckId"
@@ -32,6 +34,7 @@ const router = createBrowserRouter(
           loader={truckDetailloader}
 
           />
+
       </Route>
 
 
