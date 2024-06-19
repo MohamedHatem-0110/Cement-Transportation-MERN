@@ -16,17 +16,25 @@ import Truck, { trucksloader } from "./pages/Trucks/Truck.jsx";
 
 import ClientLayout from "./layouts/ClientLayout.jsx";
 import Clients, { clientsloader } from "./pages/Clients/Clients.jsx";
+import RootLayout from "./layouts/RootLayout";
+import NotFound from "./pages/Notfound.jsx";
+import Truck, { addtruckAction, trucksloader } from "./pages/Trucks/Truck.jsx";
+import TruckDetails, {
+  truckDetailloader,
+} from "./pages/Trucks/TruckDetails.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<RootLayout />}>
       <Route index element={<Home />} />
 
-      <Route path="trucks" element={<TruckLayout />}>
+      <Route path="trucks" element={<TruckLayout />} action={addtruckAction}>
         <Route index element={<Truck />} loader={trucksloader} />
-      </Route>
-      <Route path="clients" element={<ClientLayout />}>
-        <Route index element={<Clients />} loader={clientsloader} />
+        <Route
+          path=":truckId"
+          element={<TruckDetails />}
+          loader={truckDetailloader}
+        />
       </Route>
 
       <Route path="clients" element={<ClientLayout />}>

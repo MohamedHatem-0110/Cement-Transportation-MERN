@@ -1,6 +1,10 @@
 // routes/userRoutes.js
 const express = require("express");
-const { getAllTrucks, createTruck } = require("../controller/TruckController");
+const {
+  getAllTrucks,
+  createTruck,
+  getTruckById,
+} = require("../controller/TruckController");
 const {
   createClient,
   getAllClients,
@@ -19,6 +23,9 @@ router.post("/createtruck", createTruck);
 
 router.post("/client", createClient);
 router.get("/client", getAllClients);
+router.get("/trucks", getAllTrucks);
+router.get("/trucks/:truckId", getTruckById);
+router.post("/createtruck", createTruck);
 
 router.post("/trip", createTrip);
 router.get("/trip", getAllTrips);

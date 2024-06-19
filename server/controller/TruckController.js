@@ -31,8 +31,14 @@ const removeTruck = async (req, res) => {
   }
 };
 
-module.exports = {
-  getAllTrucks,
-  createTruck,
-  removeTruck,
+// get truck by id from params
+const getTruckById = async (req, res) => {
+  try {
+    const truck = await Truck.findById(req.params.truckId);
+    res.json(truck);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
 };
+
+module.exports = { getAllTrucks, createTruck, removeTruck, getTruckById };
