@@ -14,6 +14,7 @@ import Clients, { clientsloader } from "./pages/Clients/Clients.jsx";
 
 import Truck, { addtruckAction, trucksloader } from "./pages/Trucks/Truck.jsx";
 import TruckDetails, {
+  addTripAction,
   truckDetailloader,
 } from "./pages/Trucks/TruckDetails.jsx";
 import RootLayout from "./layouts/RootLayout.jsx";
@@ -30,6 +31,7 @@ const router = createBrowserRouter(
           path=":truckId"
           element={<TruckDetails />}
           loader={truckDetailloader}
+          action={addTripAction}
         />
       </Route>
 
