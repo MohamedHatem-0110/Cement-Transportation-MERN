@@ -11,13 +11,32 @@ export default function TruckDetails() {
 
       <h3>Trips</h3>
       {trips.length > 0 ? (
-        <ul>
-          {trips.map((trip) => (
-            <li key={trip._id}>
-              <p>{trip.driver}</p>
-            </li>
-          ))}
-        </ul>
+        <table className="container">
+          <thead>
+            <tr>
+              <th>Driver</th>
+              <th>Truck</th>
+              <th>Capital</th>
+              <th>From</th>
+              <th>To</th>
+              <th>Transactions</th>
+              <th>Clients</th>
+            </tr>
+          </thead>
+          <tbody>
+            {trips.map(trip => (
+              <tr key={trip._id}>
+                <td>{trip.driver}</td>
+                <td>{truck.name || trip.truck._id}</td>
+                <td>{trip.capital}</td>
+                <td>{trip.from}</td>
+                <td>{trip.to}</td>
+                <td>{trip.Transactions.length}</td>
+                <td>{trip.clients.length}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       ) : (
         <p>No trips</p>
       )}
@@ -30,13 +49,13 @@ export default function TruckDetails() {
         </label>
         <br />
         <label>
-          Client:
-          <select name="clients" required>
-            {clients.map(client => (
-              <option key={client._id} value={client._id}>{client.name}</option>
-            ))}
-          </select>
+            From:
+        <input type="text" name="from" required />
         </label>
+        <br />
+        To:
+        <br />
+        <input type="text" name="to" required />
         <input type="hidden" name="truck" value={truck._id} />
         <br />
         <button type="submit">Add Trip</button>
@@ -72,10 +91,11 @@ export const truckDetailloader = async ({ params }) => {
 export const addTripAction = async ({ request }) => {
     const data = await request.formData();
     const driver = data.get('driver');
-    const client = data.get('client');
     const truck = data.get('truck');
+    const from = data.get('from');
+    const to = data.get('to');
   
-    const trip = { driver, client, truck };
+    const trip = { driver,from,to , truck };
   
     const res = await fetch('http://localhost:3000/api/trip', {
       method: 'POST',

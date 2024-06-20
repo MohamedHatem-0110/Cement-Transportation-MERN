@@ -21,6 +21,9 @@ const createTrip = async (req, res) => {
     truck: truck,
     driver,
     clients: clients,
+    from: req.body.from,
+    to: req.body.to,
+    
   });
   try {
     const newTrip = await trip.save();

@@ -21,6 +21,15 @@ const TripSchema = new mongoose.Schema({
       ref: "Transaction",
     },
   ],
+  from: {
+    type: String,
+    required: true,
+  },
+    to: {
+        type: String,
+        required: true,
+    },
+    
   clients: [
     {
       type: mongoose.Schema.Types.ObjectId,
