@@ -1,8 +1,16 @@
-import { useLoaderData, useParams, Form, redirect } from "react-router-dom";
-
+import { useState } from "react";
+import { useLoaderData, useParams, Form, redirect, useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default function TruckDetails() {
-  const { truck, clients ,trips} = useLoaderData();
+  const { truck ,trips} = useLoaderData();
+  const navigate = useNavigate();
+
+  const handleNavigate = (navigateTo) => {
+    navigate(navigateTo);
+  };
+
+
 
   return (
     <div className="truck-details">
@@ -25,13 +33,14 @@ export default function TruckDetails() {
           </thead>
           <tbody>
             {trips.map(trip => (
+                
               <tr key={trip._id}>
                 <td>{trip.driver}</td>
                 <td>{truck.name || trip.truck._id}</td>
                 <td>{trip.capital}</td>
                 <td>{trip.from}</td>
                 <td>{trip.to}</td>
-                <td>{trip.Transactions.length}</td>
+                <td onClick={() => handleNavigate(`/trucks/${trip._id}/transactions`)}>{trip.Transactions.length}</td>
                 <td>{trip.clients.length}</td>
               </tr>
             ))}

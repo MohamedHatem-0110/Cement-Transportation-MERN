@@ -3,7 +3,7 @@ import { Form, Link, useActionData, useLoaderData } from "react-router-dom";
 export default function Truck() {
   const trucks = useLoaderData();
   const data = useActionData();
-  console.log(trucks[0]._id);
+  console.log();
   return (
     <div className="trucks">
       {trucks.map((truck) => (

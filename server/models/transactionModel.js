@@ -15,7 +15,7 @@ const transactionSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
-  amountOfCements: {
+  amountOfCement: {
     type: Number,
     required: true,
   },
@@ -23,6 +23,12 @@ const transactionSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  idDriver: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Driver",
+    required: true,
+  }
+
 });
 
 const Transaction = mongoose.model("Transaction", transactionSchema);

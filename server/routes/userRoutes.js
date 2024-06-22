@@ -12,9 +12,10 @@ const {
 const {
   createTrip,
   getAllTrips,
-  createTransaction,
+  
   gettripsbytruckid,
 } = require("../controller/tripsController");
+const { getTransactionByTripId, createTransaction } = require("../controller/transcations");
 const router = express.Router();
 
 // Define routes
@@ -32,7 +33,8 @@ router.post("/trip", createTrip);
 router.get("/trip", getAllTrips);
 router.get("/trips/:truckId", gettripsbytruckid);
 
-router.post("/transaction", createTransaction);
+router.post("/createtransaction", createTransaction);
+router.get("/trip/:tripId", getTransactionByTripId);
 
 // router.get("/users/:id", getUserById);
 
