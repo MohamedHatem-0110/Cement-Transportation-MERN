@@ -12,7 +12,7 @@ export default function Truck() {
         </Link>
       ))}
 
-      <Form method="post" action="/trucks">
+      <Form method="post" action={addtruckAction}>
         <label>Name:</label> <input type="text" name="name" />
         <button type="submit">Add Truck</button>
         {data && data.message && <p>{data.message}</p>}

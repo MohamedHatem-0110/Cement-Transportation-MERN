@@ -6,13 +6,14 @@ export default function Clients() {
 
   return (
     <div className="clients">
-      {clients.map((client) => (
-        <div key={client._id}>
-          <Link to={`/transaction/${client._id}`}>
-            <Client name={client.name} balance={client.balance} />
-          </Link>
-        </div>
-      ))}
+      {clients &&
+        clients.map((client) => (
+          <div key={client._id}>
+            <Link to={`/transaction/${client._id}`}>
+              <Client name={client.name} balance={client.balance} />
+            </Link>
+          </div>
+        ))}
     </div>
   );
 }

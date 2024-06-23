@@ -19,7 +19,10 @@ import TruckDetails, {
 } from "./pages/Trucks/TruckDetails.jsx";
 import RootLayout from "./layouts/RootLayout.jsx";
 import NotFound from "./pages/Notfound.jsx";
-import Transactions, { transactionsLoader } from "./pages/transcation.jsx";
+import Transactions, {
+  addTransactionAction,
+  transactionsLoader,
+} from "./pages/Transaction/Transactions.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -34,15 +37,13 @@ const router = createBrowserRouter(
           loader={truckDetailloader}
           action={addTripAction}
         />
-         <Route
-            path=":truckId/:tripId/"
-            element={<Transactions />}
-            loader={transactionsLoader}
-        
-          />
-      
-
       </Route>
+      <Route
+        path="trucks/:truckId/transaction/:tripId"
+        element={<Transactions />}
+        loader={transactionsLoader}
+        action={addTransactionAction}
+      />
 
       <Route path="clients" element={<ClientLayout />}>
         <Route index element={<Clients />} loader={clientsloader} />

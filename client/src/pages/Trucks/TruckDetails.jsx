@@ -1,16 +1,20 @@
 import { useState } from "react";
-import { useLoaderData, useParams, Form, redirect, useNavigate } from "react-router-dom";
+import {
+  useLoaderData,
+  useParams,
+  Form,
+  redirect,
+  useNavigate,
+} from "react-router-dom";
 import { Navigate } from "react-router-dom";
 
 export default function TruckDetails() {
-  const { truck ,trips} = useLoaderData();
+  const { truck, trips } = useLoaderData();
   const navigate = useNavigate();
 
   const handleNavigate = (navigateTo) => {
     navigate(navigateTo);
   };
-
-
 
   return (
     <div className="truck-details">
@@ -32,15 +36,16 @@ export default function TruckDetails() {
             </tr>
           </thead>
           <tbody>
-            {trips.map(trip => (
-                
+            {trips.map((trip) => (
               <tr key={trip._id}>
                 <td>{trip.driver}</td>
                 <td>{truck.name || trip.truck._id}</td>
                 <td>{trip.capital}</td>
                 <td>{trip.from}</td>
                 <td>{trip.to}</td>
-                <td onClick={() => handleNavigate(`/trucks/${trip._id}/transactions`)}>{trip.Transactions.length}</td>
+                <td onClick={() => handleNavigate(`transaction/${trip._id}`)}>
+                  {trip.Transactions.length}
+                </td>
                 <td>{trip.clients.length}</td>
               </tr>
             ))}
@@ -58,8 +63,8 @@ export default function TruckDetails() {
         </label>
         <br />
         <label>
-            From:
-        <input type="text" name="from" required />
+          From:
+          <input type="text" name="from" required />
         </label>
         <br />
         To:
@@ -73,50 +78,50 @@ export default function TruckDetails() {
   );
 }
 export const truckDetailloader = async ({ params }) => {
-    const { truckId } = params;
-  
-    // Fetch truck details
-    const truckRes = await fetch(`http://localhost:3000/api/trucks/${truckId}`);
-    if (!truckRes.ok) {
-      throw new Error('Failed to fetch truck details');
-    }
-    const truck = await truckRes.json();
-  
-    // Fetch clients
-    const clientsRes = await fetch(`http://localhost:3000/api/client`);
-    if (!clientsRes.ok) {
-      throw new Error('Failed to fetch clients');
-    }
-    const clients = await clientsRes.json();
-    const trucktrips = await fetch(`http://localhost:3000/api/trips/${truckId}`);
-    if (!trucktrips.ok) {
-      throw new Error('Failed to fetch trips');
-    }
-    const trips = await trucktrips.json();
-  
-    return { truck, clients ,trips};
-  };
+  const { truckId } = params;
+
+  // Fetch truck details
+  const truckRes = await fetch(`http://localhost:3000/api/trucks/${truckId}`);
+  if (!truckRes.ok) {
+    throw new Error("Failed to fetch truck details");
+  }
+  const truck = await truckRes.json();
+
+  // Fetch clients
+  const clientsRes = await fetch(`http://localhost:3000/api/client`);
+  if (!clientsRes.ok) {
+    throw new Error("Failed to fetch clients");
+  }
+  const clients = await clientsRes.json();
+  const trucktrips = await fetch(`http://localhost:3000/api/trips/${truckId}`);
+  if (!trucktrips.ok) {
+    throw new Error("Failed to fetch trips");
+  }
+  const trips = await trucktrips.json();
+
+  return { truck, clients, trips };
+};
 
 export const addTripAction = async ({ request }) => {
-    const data = await request.formData();
-    const driver = data.get('driver');
-    const truck = data.get('truck');
-    const from = data.get('from');
-    const to = data.get('to');
-  
-    const trip = { driver,from,to , truck };
-  
-    const res = await fetch('http://localhost:3000/api/trip', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(trip),
-    });
-  
-    if (!res.ok) {
-      throw new Error('Failed to add trip');
-    }
-  
-    return redirect(`/trucks/${truck}`);
-  };
+  const data = await request.formData();
+  const driver = data.get("driver");
+  const truck = data.get("truck");
+  const from = data.get("from");
+  const to = data.get("to");
+
+  const trip = { driver, from, to, truck };
+
+  const res = await fetch("http://localhost:3000/api/trip", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(trip),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed to add trip");
+  }
+
+  return redirect(`/trucks/${truck}`);
+};

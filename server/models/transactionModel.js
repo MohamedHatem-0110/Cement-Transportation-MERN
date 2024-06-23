@@ -23,12 +23,9 @@ const transactionSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-  idDriver: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "Driver",
-    required: true,
-  }
-
+  driver: {
+    type: String,
+  },
 });
 
 const Transaction = mongoose.model("Transaction", transactionSchema);
